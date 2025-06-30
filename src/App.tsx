@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import CurrentWeather from './components/CurrentWeather';
 import HeaderForm from './components/HeaderForm';
+import CurrentWeather from './components/CurrentWeather';
+import HourlyWeather from './components/HourlyWeather';
 
 function App() {
   const [city, setCity] = useState('');
@@ -16,6 +17,9 @@ function App() {
       <HeaderForm city={city} setCity={setCity} onSubmit={handleSubmit} />
       <div className="mt-8 w-full max-w-md">
         {submittedCity && <CurrentWeather city={submittedCity} />}
+      </div>
+      <div className="mt-8 w-full max-w-md">
+        {submittedCity && <HourlyWeather city={submittedCity} />}
       </div>
     </div>
   );

@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
 import getCoordsByCity from '../api/getCoordsByCity';
 import getCurrentWeatherByCoords from '../api/getCurrentWeatherByCoords';
-import { type WeatherData, type WeatherProps } from '../types/weather.types';
+import {
+  type CurrentWeatherData,
+  type WeatherProps,
+} from '../types/weather.types';
 import { weatherCodeToDescription } from '../utils/weathercodeToDescription';
 import { weatherCodeToIcon } from '../utils/weathercodeToIcon';
 
 export default function CurrentWeather({ city }: WeatherProps) {
-  const [weather, setWeather] = useState<WeatherData | null>(null);
+  const [weather, setWeather] = useState<CurrentWeatherData | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -58,7 +61,7 @@ export default function CurrentWeather({ city }: WeatherProps) {
   return (
     weather && (
       <div className="bg-gradient-to-b from-cyan-500 to-sky-700 rounded-lg shadow-lg text-white max-w-xl w-full p-4 sm:p-6">
-        <div className="text-2xl font-semibold mb-4">{city}</div>
+        <div className="text-2xl font-semibold mb-4">Today</div>
 
         <div className="mb-4 flex flex-row">
           <img

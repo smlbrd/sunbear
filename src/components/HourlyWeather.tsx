@@ -1,11 +1,17 @@
+import type { Dispatch, SetStateAction } from 'react';
 import { useEffect, useState } from 'react';
 import getCoordsByCity from '../api/getCoordsByCity';
 import getHourlyWeatherByCoords from '../api/getHourlyWeatherByCoords';
 import { type HourlyWeatherData } from '../types/weather.types';
 
-export default function HourlyWeather({ city }: { city: string }) {
+export default function HourlyWeather({
+  city,
+  setLoading,
+}: {
+  city: string;
+  setLoading: Dispatch<SetStateAction<boolean>>;
+}) {
   const [hourly, setHourly] = useState<HourlyWeatherData[]>([]);
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -25,18 +31,7 @@ export default function HourlyWeather({ city }: { city: string }) {
       }
     };
     fetchHourly();
-  }, [city]);
-
-  if (loading)
-    return (
-      <div className="flex justify-center items-center p-8">
-        <img
-          src="/loading.svg"
-          alt="Loading..."
-          className="w-12 h-12 animate-spin-slow"
-        />
-      </div>
-    );
+  }, [city, setLoading]);
 
   if (error)
     return (

@@ -1,3 +1,4 @@
+import type { Dispatch, SetStateAction } from 'react';
 import { useEffect, useState } from 'react';
 import getCoordsByCity from '../api/getCoordsByCity';
 import getCurrentWeatherByCoords from '../api/getCurrentWeatherByCoords';
@@ -8,9 +9,15 @@ import {
 import { weatherCodeToDescription } from '../utils/weathercodeToDescription';
 import { weatherCodeToIcon } from '../utils/weathercodeToIcon';
 
-export default function CurrentWeather({ city }: WeatherProps) {
+type CurrentWeatherProps = WeatherProps & {
+  setLoading: Dispatch<SetStateAction<boolean>>;
+};
+
+export default function CurrentWeather({
+  city,
+  setLoading,
+}: CurrentWeatherProps) {
   const [weather, setWeather] = useState<CurrentWeatherData | null>(null);
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -38,18 +45,7 @@ export default function CurrentWeather({ city }: WeatherProps) {
       }
     };
     fetchWeather();
-  }, [city]);
-
-  if (loading)
-    return (
-      <div className="flex justify-center items-center p-8">
-        <img
-          src="/loading.svg"
-          alt="Loading..."
-          className="w-12 h-12 animate-spin-slow"
-        />
-      </div>
-    );
+  }, [city, setLoading]);
 
   if (error)
     return (

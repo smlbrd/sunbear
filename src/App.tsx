@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import CurrentWeather from './components/CurrentWeather';
 
 function App() {
   const [city, setCity] = useState('');
@@ -34,11 +35,9 @@ function App() {
           Continue
         </button>
       </form>
-      {submittedCity && (
-        <div className="mt-4 text-lg text-gray-800">
-          <span className="font-semibold">{submittedCity}</span>
-        </div>
-      )}
+      <div className="mt-8 w-full max-w-md">
+        {submittedCity && <CurrentWeather city={submittedCity} />}
+      </div>
     </div>
   );
 }

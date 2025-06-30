@@ -41,7 +41,7 @@ export default function CurrentWeather({ city }: WeatherProps) {
     return (
       <div className="flex justify-center items-center p-8">
         <img
-          src="/public/loading.svg"
+          src="/loading.svg"
           alt="Loading..."
           className="w-12 h-12 animate-spin-slow"
         />
@@ -57,7 +57,7 @@ export default function CurrentWeather({ city }: WeatherProps) {
 
   return (
     weather && (
-      <div className="bg-gradient-to-b from-cyan-500 to-sky-700 rounded-lg shadow-lg p-6 text-white max-w-xl w-full">
+      <div className="bg-gradient-to-b from-cyan-500 to-sky-700 rounded-lg shadow-lg text-white max-w-xl w-full p-4 sm:p-6">
         <div className="text-2xl font-semibold mb-4">{city}</div>
 
         <div className="mb-4 flex flex-row">

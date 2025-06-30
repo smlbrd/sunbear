@@ -1,17 +1,44 @@
 import { useState } from 'react';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [city, setCity] = useState('');
+  const [submittedCity, setSubmittedCity] = useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmittedCity(city);
+  };
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-      <button
-        className="mt-4 rounded-2xl outline-2  outline-gray-800 p-4"
-        onClick={() => setCount((count) => count + 1)}
-      >
-        count is {count}
-      </button>
+      <form onSubmit={handleSubmit}>
+        <label
+          htmlFor="city"
+          className="block text-sm font-medium text-gray-700 mb-1"
+        >
+          City Name
+        </label>
+        <input
+          id="city"
+          type="text"
+          placeholder="Select a city"
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-transparent mb-1"
+        />
+        <button
+          className="w-full bg-blue-400 hover:bg-blue-500 text-white py-2 px-4 rounded-lg transition-colors duration-200 font-medium"
+          type="submit"
+          disabled={!city.trim()}
+        >
+          Continue
+        </button>
+      </form>
+      {submittedCity && (
+        <div className="mt-4 text-lg text-gray-800">
+          <span className="font-semibold">{submittedCity}</span>
+        </div>
+      )}
     </div>
   );
 }

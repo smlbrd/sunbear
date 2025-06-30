@@ -13,8 +13,8 @@ const getCoordsByCity = async (
 
   const data = await res.json();
 
-  if (!data.results) {
-    throw new Error('City not found');
+  if (!data.results || data.results.length === 0) {
+    throw new Error('Cannot find coordinates for the specified city');
   }
 
   return {

@@ -1,17 +1,22 @@
 import { useState } from 'react';
+import CurrentWeather from './components/CurrentWeather';
+import HeaderForm from './components/HeaderForm';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [city, setCity] = useState('');
+  const [submittedCity, setSubmittedCity] = useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmittedCity(city);
+  };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-      <button
-        className="mt-4 rounded-2xl outline-2  outline-gray-800 p-4"
-        onClick={() => setCount((count) => count + 1)}
-      >
-        count is {count}
-      </button>
+    <div className="pt-24 flex flex-col items-center min-h-screen bg-gray-100">
+      <HeaderForm city={city} setCity={setCity} onSubmit={handleSubmit} />
+      <div className="mt-8 w-full max-w-md">
+        {submittedCity && <CurrentWeather city={submittedCity} />}
+      </div>
     </div>
   );
 }

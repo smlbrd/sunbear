@@ -54,7 +54,11 @@ npm run preview
 ```
 
 ### Special thanks
+
 Weather data: [Open-Meteo](https://open-meteo.com/)
+
 Location API: [ip-api.io](https://ip-api.io/)
+
 Timezone utility: [date-fns-tz](https://www.npmjs.com/package/date-fns-tz)
+
 Icons: [Sihan Liu](https://www.iconfinder.com/Neolau1119)

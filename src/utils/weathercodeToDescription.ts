@@ -29,6 +29,6 @@ const descriptions: Record<number, string> = {
   99: 'Heavy Hailstorm',
 };
 
-export function weatherCodeToDescription(code: number): string {
-  return descriptions[code] ?? 'Unknown Weather';
+export function weatherCodeToDescription(weathercode: number): string {
+  return descriptions[weathercode] ?? 'Unknown Weather';
 }

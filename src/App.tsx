@@ -4,7 +4,6 @@ import Header from './components/Header';
 import SearchForm from './components/SearchForm';
 import CurrentWeatherWidget from './components/CurrentWeatherWidget';
 import HourlyWeather from './components/HourlyWeather';
-import Loading from './components/Loading';
 import SevenDayForecast from './components/SevenDayForecast';
 import getCoordsByCity from './api/getCoordsByCity';
 import getWeatherByCoords from './api/getWeatherByCoords';
@@ -12,6 +11,8 @@ import type {
   HourlyWeatherData,
   DailyWeatherData,
 } from './types/weather.types';
+import SevenDayForecastSkeleton from './components/SevenDayForecastSkeleton';
+import HourlyWeatherTableSkeleton from './components/HourlyWeatherTableSkeleton';
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -40,10 +41,6 @@ function App() {
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Could not fetch weather.');
       setSubmittedCity('');
-      setHourlyWeather([]);
-      setDailyWeather([]);
-      setTimezone('');
-      setSelectedDay(0);
     } finally {
       setLoading(false);
     }
@@ -77,29 +74,36 @@ function App() {
       />
       <div className="w-full flex flex-col items-center">
         <SearchForm city={city} setCity={setCity} onSubmit={handleSubmit} />
-        <Loading loading={loading} />
         {error && (
           <div className="bg-red-50 p-4 rounded-md border border-red-200 mt-4">
             <p className="text-red-600 font-medium">{error}</p>
           </div>
         )}
         <div className="mt-8 w-full max-w-5xl p-4">
-          {dailyWeather.length > 0 && (
-            <SevenDayForecast
-              daily={dailyWeather}
-              selectedDay={selectedDay}
-              setSelectedDay={setSelectedDay}
-              timezone={timezone}
-            />
+          {loading ? (
+            <SevenDayForecastSkeleton />
+          ) : (
+            dailyWeather.length > 0 && (
+              <SevenDayForecast
+                dailyWeather={dailyWeather}
+                selectedDay={selectedDay}
+                setSelectedDay={setSelectedDay}
+                timezone={timezone}
+              />
+            )
           )}
         </div>
         <div className="mt-8 w-full max-w-4xl p-4">
-          {hourlyWeather.length > 0 && (
-            <HourlyWeather
-              hourlyWeather={hourlyWeather}
-              selectedDay={selectedDay}
-              timezone={timezone}
-            />
+          {loading ? (
+            <HourlyWeatherTableSkeleton columns={8} />
+          ) : (
+            hourlyWeather.length > 0 && (
+              <HourlyWeather
+                hourlyWeather={hourlyWeather}
+                selectedDay={selectedDay}
+                timezone={timezone}
+              />
+            )
           )}
         </div>
       </div>

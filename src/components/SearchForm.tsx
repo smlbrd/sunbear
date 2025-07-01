@@ -8,7 +8,7 @@ export default function SearchForm({
   return (
     <form
       onSubmit={onSubmit}
-      className="flex flex-col sm:flex-row justify-center gap-2 w-full lg:w-4/5 mx-auto p-4"
+      className="flex flex-col sm:flex-row justify-center gap-2 w-full lg:w-4/5 mx-auto p-4 mt-2"
     >
       <label htmlFor="city" className="sr-only">
         City Name

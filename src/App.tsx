@@ -35,6 +35,9 @@ function App() {
       setDailyWeather(daily);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Could not fetch weather.');
+      setSubmittedCity('');
+      setHourlyWeather([]);
+      setDailyWeather([]);
     } finally {
       setLoading(false);
     }

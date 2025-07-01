@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import getCityByIP from './api/getCityByIP';
 import Header from './components/Header';
 import SearchForm from './components/SearchForm';
-import CurrentWeather from './components/CurrentWeather';
+import CurrentWeatherWidget from './components/CurrentWeatherWidget';
 import HourlyWeather from './components/HourlyWeather';
 import Loading from './components/Loading';
 import SevenDayForecast from './components/SevenDayForecast';
@@ -22,13 +23,12 @@ function App() {
   const [selectedDay, setSelectedDay] = useState(0);
   const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmittedCity(city);
+  const fetchWeather = async (cityToFetch: string) => {
+    setSubmittedCity(cityToFetch);
     setLoading(true);
     setError(null);
     try {
-      const coords = await getCoordsByCity(city);
+      const coords = await getCoordsByCity(cityToFetch);
       const { hourly, daily, timezone } = await getWeatherByCoords(
         coords.lat,
         coords.lon
@@ -49,11 +49,30 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    getCityByIP()
+      .then((detectedCity) => {
+        setCity(detectedCity);
+        fetchWeather(detectedCity);
+      })
+      .catch((err) => {
+        setError(
+          err instanceof Error ? err.message : 'Could not fetch weather.'
+        );
+        setSubmittedCity('');
+      });
+  }, []);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    fetchWeather(city);
+  };
+
   return (
     <div className="pt-24 min-h-screen bg-gray-100">
       <Header
         currentWeather={
-          submittedCity ? <CurrentWeather city={submittedCity} /> : null
+          submittedCity ? <CurrentWeatherWidget city={submittedCity} /> : null
         }
       />
       <div className="w-full flex flex-col items-center">

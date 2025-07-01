@@ -1,4 +1,4 @@
-import { type SearchFormProps } from '../types/search.types';
+import type { SearchFormProps } from '../types/search.types';
 
 export default function SearchForm({
   city,

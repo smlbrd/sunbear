@@ -1,4 +1,4 @@
-import { type LoadingProps } from '../types/loading.types';
+import type { LoadingProps } from '../types/loading.types';
 
 export default function Loading({ loading }: LoadingProps) {
   if (!loading) return null;

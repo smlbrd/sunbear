@@ -1,4 +1,4 @@
-import { type HourlyWeatherData } from '../types/weather.types';
+import type { HourlyWeatherData } from '../types/weather.types';
 
 export default function HourlyWeatherTable({
   hourly,
@@ -85,7 +85,7 @@ export default function HourlyWeatherTable({
           </td>
           {uv.map((u, i) => (
             <td key={i} className="p-2">
-              {u}
+              {Math.round(u)}
             </td>
           ))}
         </tr>

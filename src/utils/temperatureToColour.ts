@@ -2,7 +2,7 @@ const temperatureClasses: [number, string][] = [
   [40, 'bg-red-600/60'],
   [35, 'bg-red-500/60'],
   [30, 'bg-red-400/60'],
-  [25, 'bg-orange-500/60'],
+  [25, 'bg-orange-500/50'],
   [23, 'bg-orange-400/50'],
   [20, 'bg-orange-500/40'],
   [15, 'bg-yellow-400/50'],

@@ -1,77 +1,64 @@
-import type { Dispatch, SetStateAction } from 'react';
 import { useEffect, useState } from 'react';
 import getCoordsByCity from '../api/getCoordsByCity';
 import getCurrentWeatherByCoords from '../api/getCurrentWeatherByCoords';
-import {
-  type CurrentWeatherData,
-  type WeatherProps,
-} from '../types/weather.types';
+import type { CurrentWeatherData, WeatherProps } from '../types/weather.types';
 import { weatherCodeToDescription } from '../utils/weathercodeToDescription';
 import { weatherCodeToIcon } from '../utils/weathercodeToIcon';
+import Loading from './Loading';
 
-type CurrentWeatherProps = WeatherProps & {
-  setLoading: Dispatch<SetStateAction<boolean>>;
-};
-
-export default function CurrentWeather({
-  city,
-  setLoading,
-}: CurrentWeatherProps) {
+export default function CurrentWeather({ city }: WeatherProps) {
   const [weather, setWeather] = useState<CurrentWeatherData | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    if (!city) return;
+    let ignore = false;
     const fetchWeather = async () => {
       setLoading(true);
-      setError(null);
-
       try {
         const coords = await getCoordsByCity(city);
         const currentWeather = await getCurrentWeatherByCoords(
           coords.lat,
           coords.lon
         );
-
-        setWeather(currentWeather);
-      } catch (err) {
-        if (err instanceof Error) {
-          setError(err.message);
-        } else {
-          setError('Could not fetch weather.');
-        }
-        console.error(err);
+        if (!ignore) setWeather(currentWeather);
+      } catch {
+        if (!ignore) setWeather(null);
       } finally {
-        setLoading(false);
+        if (!ignore) setLoading(false);
       }
     };
     fetchWeather();
-  }, [city, setLoading]);
-
-  if (error)
-    return (
-      <div className="bg-red-50 p-4 rounded-md border border-red-200">
-        <p className="text-red-600 font-medium">{error}</p>
-      </div>
-    );
+    return () => {
+      ignore = true;
+    };
+  }, [city]);
 
   return (
-    weather && (
-      <div className="bg-gradient-to-b from-cyan-500 to-sky-700 rounded-lg shadow-lg text-white max-w-xl w-full p-4 sm:p-6">
-        <div className="text-2xl font-semibold mb-4">Today</div>
-
-        <div className="mb-4 flex flex-row">
+    <div
+      className="flex items-center min-w-[140px] min-h-[48px] px-3 py-1 bg-transparent text-gray-800"
+      style={{ boxSizing: 'border-box' }}
+    >
+      {loading ? (
+        <>
+          <Loading loading={loading} />
+          <span className="sr-only">Loading...</span>
+        </>
+      ) : weather ? (
+        <>
+          <h1 className="mr-2">{city}</h1>
           <img
             src={`/weathercode-icons/${weatherCodeToIcon(
               weather.weathercode
             )}.svg`}
             alt={weatherCodeToDescription(weather.weathercode)}
-            className="w-20 h-20 mr-4"
+            className="w-10 h-10 mr-2"
           />
-          <div className="text-4xl font-semibold mb-2 flex items-center">
+          <span className="font-semibold text-lg mr-2">
             {Math.round(weather.temperature)}°C
-          </div>
-        </div>
-      </div>
-    )
+          </span>
+        </>
+      ) : null}
+    </div>
   );
 }

@@ -5,7 +5,7 @@ const getCurrentWeatherByCoords = async (
   lon: number
 ): Promise<CurrentWeatherData> => {
   const res = await fetch(
-    `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`
+    `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&timezone=auto`
   );
 
   if (!res.ok) {

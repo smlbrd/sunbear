@@ -48,7 +48,11 @@ function App() {
 
   return (
     <div className="pt-24 min-h-screen bg-gray-100">
-      <Header />
+      <Header
+        currentWeather={
+          submittedCity ? <CurrentWeather city={submittedCity} /> : null
+        }
+      />
       <div className="w-full flex flex-col items-center">
         <SearchForm city={city} setCity={setCity} onSubmit={handleSubmit} />
         <Loading loading={loading} />
@@ -57,11 +61,6 @@ function App() {
             <p className="text-red-600 font-medium">{error}</p>
           </div>
         )}
-        <div className="mt-8 w-full max-w-sm">
-          {submittedCity && (
-            <CurrentWeather city={submittedCity} setLoading={setLoading} />
-          )}
-        </div>
         <div className="mt-8 w-full max-w-2xl">
           {dailyWeather.length > 0 && (
             <SevenDayForecast

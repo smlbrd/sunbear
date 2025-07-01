@@ -18,6 +18,7 @@ export type CurrentWeatherData = {
 export type WeatherApiResponse = {
   hourly: HourlyWeatherData[];
   daily: DailyWeatherData[];
+  timezone: string;
 };
 
 export type HourlyWeatherProps = {

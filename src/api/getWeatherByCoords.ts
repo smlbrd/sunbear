@@ -4,11 +4,6 @@ import type {
   WeatherApiResponse,
 } from '../types/weather.types';
 
-export type WeatherApiResult = {
-  hourly: HourlyWeatherData[];
-  daily: DailyWeatherData[];
-};
-
 const getWeatherByCoords = async (
   lat: number,
   lon: number
@@ -40,7 +35,9 @@ const getWeatherByCoords = async (
     })
   );
 
-  return { hourly, daily };
+  const timezone: string = data.timezone;
+
+  return { hourly, daily, timezone };
 };
 
 export default getWeatherByCoords;

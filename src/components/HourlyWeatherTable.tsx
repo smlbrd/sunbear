@@ -8,22 +8,7 @@ export default function HourlyWeatherTable({
   hourly: HourlyWeatherData[];
   timezone: string;
 }) {
-  const now = new Date();
-  const nowLocal = formatInTimeZone(now, timezone, "yyyy-MM-dd'T'HH:00");
-
-  const startIndex = hourly.findIndex((h) => {
-    const nextLocal = formatInTimeZone(h.time, timezone, "yyyy-MM-dd'T'HH:00");
-    return nextLocal >= nowLocal;
-  });
-
-  const displayHours = hourly.slice(
-    startIndex >= 0 ? startIndex : 0,
-    (startIndex >= 0 ? startIndex : 0) + 12
-  );
-
-  const hours = displayHours.map((h) =>
-    formatInTimeZone(h.time, timezone, 'HHmm')
-  );
+  const hours = hourly.map((h) => formatInTimeZone(h.time, timezone, 'HH:mm'));
   const temps = hourly.map((h) => `${Math.round(h.temperature)}°C`);
   const feels = hourly.map((h) => `${Math.round(h.apparentTemperature)}°C`);
   const humidity = hourly.map((h) => `${h.humidity}%`);

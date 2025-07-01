@@ -50,6 +50,7 @@ export default function CurrentWeatherWidget({ city }: WeatherProps) {
             )}.svg`}
             alt={weatherCodeToDescription(weather.weathercode)}
             className="w-10 h-10 mr-2"
+            loading="lazy"
           />
           <span className="font-semibold text-lg mr-2">
             {Math.round(weather.temperature)}°C

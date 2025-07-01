@@ -9,7 +9,7 @@
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
   .cw-xs {
     align-items: center !important;
     padding: 0.25rem 0.5rem !important;

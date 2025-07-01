@@ -13,12 +13,12 @@ export function getDayHourlySlice(
 
   const now = new Date();
   const nowLocal = formatInTimeZone(now, timezone, "yyyy-MM-dd'T'HH:00");
-  const firstIdx = daySlice.findIndex((h) => {
+  const firstIndex = daySlice.findIndex((h) => {
     const hLocal = formatInTimeZone(h.time, timezone, "yyyy-MM-dd'T'HH:00");
     return hLocal >= nowLocal;
   });
 
-  return firstIdx >= 0
-    ? daySlice.slice(firstIdx, firstIdx + hoursPerDay)
+  return firstIndex >= 0
+    ? daySlice.slice(firstIndex, firstIndex + hoursPerDay)
     : daySlice.slice(0, hoursPerDay);
 }

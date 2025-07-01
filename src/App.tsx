@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import HeaderForm from './components/HeaderForm';
+import Header from './components/Header';
+import SearchForm from './components/SearchForm';
 import CurrentWeather from './components/CurrentWeather';
 import HourlyWeather from './components/HourlyWeather';
 import Loading from './components/Loading';
@@ -16,7 +17,8 @@ function App() {
 
   return (
     <div className="pt-24 flex flex-col items-center min-h-screen bg-gray-100">
-      <HeaderForm city={city} setCity={setCity} onSubmit={handleSubmit} />
+      <Header />
+      <SearchForm city={city} setCity={setCity} onSubmit={handleSubmit} />
       <Loading loading={loading} />
       <div className="mt-8 w-full max-w-md">
         {submittedCity && (

@@ -40,10 +40,7 @@ export default function CurrentWeatherWidget({ city }: WeatherProps) {
       style={{ boxSizing: 'border-box' }}
     >
       {loading ? (
-        <>
-          <Loading loading={loading} />
-          <span className="sr-only">Loading...</span>
-        </>
+        <Loading loading={loading} />
       ) : weather ? (
         <>
           <h1 className="mr-2">{city}</h1>

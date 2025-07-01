@@ -19,7 +19,9 @@ export default function HourlyWeatherTable({
     <table className="min-w-max w-full text-center border-collapse bg-white rounded-lg shadow overflow-x-auto">
       <thead>
         <tr>
-          <th className=" bg-gray-100 sticky left-0 z-10" scope="col"></th>
+          <th className=" bg-gray-100 sticky left-0 z-10 sr-only" scope="col">
+            Metric
+          </th>
           {hours.map((hour, i) => (
             <th
               key={i}

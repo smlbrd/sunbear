@@ -29,7 +29,7 @@ export default function SearchForm({
         disabled={!city.trim()}
         aria-disabled={!city.trim()}
       >
-        Continue
+        Search
       </button>
     </form>
   );

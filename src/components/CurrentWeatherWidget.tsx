@@ -39,16 +39,6 @@ export default function CurrentWeatherWidget({ city }: CurrentWeatherProps) {
 
   return (
     <>
-      <style>
-        {`
-          @media (max-width: 400px) {
-            .cw-xs { align-items: center !important; padding: 0.25rem 0.5rem !important; }
-            .cw-xs .cw-city { display: none !important; }
-            .cw-xs .cw-icon { margin: 0 !important; width: 2rem !important; height: 2rem !important; }
-            .cw-xs .cw-temp { margin: 0 !important; font-size: 1rem !important; }
-          }
-        `}
-      </style>
       <div
         className="flex items-center min-w-[140px] min-h-[48px] px-6 m-3 bg-transparent text-gray-800 cw-xs"
         style={{ boxSizing: 'border-box' }}

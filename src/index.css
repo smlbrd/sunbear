@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 .animate-spin-slow {
-  animation: spin 4s linear infinite;
+  animation: spin 6s linear infinite;
 }
 @keyframes spin {
   to {

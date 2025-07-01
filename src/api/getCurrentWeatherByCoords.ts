@@ -1,9 +1,9 @@
-import { type WeatherData } from '../types/weather.types';
+import { type CurrentWeatherData } from '../types/weather.types';
 
 const getCurrentWeatherByCoords = async (
   lat: number,
   lon: number
-): Promise<WeatherData> => {
+): Promise<CurrentWeatherData> => {
   const res = await fetch(
     `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`
   );

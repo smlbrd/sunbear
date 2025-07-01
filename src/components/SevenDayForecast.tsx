@@ -13,11 +13,11 @@ export default function SevenDayForecast({
   timezone,
 }: SevenDayForecastProps) {
   return (
-    <section className="mt-4 w-full">
+    <section className="mt-4">
       <h2 className="sr-only">7-Day Forecast</h2>
       <div
         className="
-          flex overflow-x-auto
+          flex overflow-x-auto overflow-visible p-2
           lg:overflow-x-visible
           lg:grid lg:grid-cols-8 lg:items-end lg:h-48
         "
@@ -26,14 +26,16 @@ export default function SevenDayForecast({
           <button
             key={day.time}
             className={`
-              flex flex-col justify-center items-center bg-white rounded-none shadow
-              border border-gray-200 w-full flex-1
+              flex flex-col justify-center items-center bg-white
+              border border-gray-200 
               transition-all duration-200
-              px-2
+              w-full
+              h-40 px-4 py-3
+              lg:px-6
               ${
                 selectedDay === i
-                  ? 'lg:col-span-2 lg:h-48 h-44 ring-2 ring-blue-500 border-blue-500 z-10'
-                  : 'lg:col-span-1 lg:h-44 h-40 hover:border-blue-300'
+                  ? 'lg:col-span-2 lg:h-48 ring-2 ring-blue-500 border-blue-500 z-10'
+                  : 'lg:col-span-1 lg:h-44 hover:border-blue-300'
               }
               ${i === 0 ? 'rounded-l-lg' : ''}
               ${i === daily.length - 1 ? 'rounded-r-lg' : ''}
@@ -56,13 +58,13 @@ export default function SevenDayForecast({
                 day.weatherCode
               )}.svg`}
               alt={weatherCodeToDescription(day.weatherCode)}
-              className="w-12 h-12 mb-1"
+              className="w-10 h-10 sm:w-12 sm:h-12 mb-1"
             />
-            <span className="text-2xl font-bold text-gray-600 mb-1">
+            <span className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-600 mb-1">
               {Math.round(day.temperatureMax)}°C
             </span>
             <span className="text-xs text-gray-500 mb-1">
-              Feels like {Math.round(day.apparentTemperatureMax)}°C
+              {Math.round(day.apparentTemperatureMax)}°C
             </span>
           </button>
         ))}

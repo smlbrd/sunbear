@@ -19,12 +19,7 @@ export default function HourlyWeatherTable({
     <table className="min-w-max w-full text-center border-collapse bg-white rounded-lg shadow overflow-x-auto">
       <thead>
         <tr>
-          <th
-            className="p-2 text-xs font-semibold text-gray-600 bg-gray-100 sticky left-0 z-10"
-            scope="col"
-          >
-            Metric
-          </th>
+          <th className=" bg-gray-100 sticky left-0 z-10" scope="col"></th>
           {hours.map((hour, i) => (
             <th
               key={i}
@@ -38,7 +33,7 @@ export default function HourlyWeatherTable({
       </thead>
       <tbody>
         <tr>
-          <td className="p-2 font-medium text-gray-700 bg-gray-50 sticky left-0">
+          <td className="p-2 text-sm sm:text-md text-gray-700 bg-gray-50 sticky left-0">
             Temp
           </td>
           {temps.map((t, i) => (
@@ -48,7 +43,7 @@ export default function HourlyWeatherTable({
           ))}
         </tr>
         <tr>
-          <td className="p-2 font-medium text-gray-700 bg-gray-50 sticky left-0">
+          <td className="p-2 text-sm sm:text-md text-gray-700 bg-gray-50 sticky left-0">
             Feels Like
           </td>
           {feels.map((f, i) => (
@@ -58,7 +53,7 @@ export default function HourlyWeatherTable({
           ))}
         </tr>
         <tr>
-          <td className="p-2 font-medium text-gray-700 bg-gray-50 sticky left-0">
+          <td className="p-2 text-sm sm:text-md text-gray-700 bg-gray-50 sticky left-0">
             Humidity
           </td>
           {humidity.map((h, i) => (
@@ -68,7 +63,7 @@ export default function HourlyWeatherTable({
           ))}
         </tr>
         <tr>
-          <td className="p-2 font-medium text-gray-700 bg-gray-50 sticky left-0">
+          <td className="p-2 text-sm sm:text-md text-gray-700 bg-gray-50 sticky left-0">
             Precip %
           </td>
           {precip.map((p, i) => (
@@ -78,7 +73,7 @@ export default function HourlyWeatherTable({
           ))}
         </tr>
         <tr>
-          <td className="p-2 font-medium text-gray-700 bg-gray-50 sticky left-0">
+          <td className="p-2 text-sm sm:text-md text-gray-700 bg-gray-50 sticky left-0">
             UV Index
           </td>
           {uv.map((u, i) => (

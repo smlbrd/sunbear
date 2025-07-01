@@ -7,7 +7,7 @@ import { weatherCodeToIcon } from '../utils/weathercodeToIcon';
 import { formatInTimeZone } from 'date-fns-tz';
 
 export default function SevenDayForecast({
-  daily,
+  dailyWeather,
   selectedDay,
   setSelectedDay,
   timezone,
@@ -23,7 +23,7 @@ export default function SevenDayForecast({
           lg:grid lg:grid-cols-8 lg:items-end lg:h-48
         "
         >
-          {daily.map((day: DailyWeatherData, i: number) => (
+          {dailyWeather.map((day: DailyWeatherData, i: number) => (
             <button
               key={day.time}
               className={`
@@ -39,7 +39,7 @@ export default function SevenDayForecast({
                   : 'lg:col-span-1 lg:h-44 hover:border-blue-300'
               }
               ${i === 0 ? 'rounded-l-lg' : ''}
-              ${i === daily.length - 1 ? 'rounded-r-lg' : ''}
+              ${i === dailyWeather.length - 1 ? 'rounded-r-lg' : ''}
             `}
               type="button"
               onClick={() => setSelectedDay(i)}

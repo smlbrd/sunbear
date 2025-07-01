@@ -38,28 +38,40 @@ export default function CurrentWeatherWidget({ city }: CurrentWeatherProps) {
   }, [city]);
 
   return (
-    <div
-      className="flex items-center min-w-[140px] min-h-[48px] px-3 py-1 bg-transparent text-gray-800"
-      style={{ boxSizing: 'border-box' }}
-    >
-      {loading ? (
-        <Loading loading={loading} />
-      ) : weather ? (
-        <>
-          <h1 className="mr-2">{city}</h1>
-          <img
-            src={`/weathercode-icons/${weatherCodeToIcon(
-              weather.weathercode
-            )}.svg`}
-            alt={weatherCodeToDescription(weather.weathercode)}
-            className="w-10 h-10 mr-2"
-            loading="lazy"
-          />
-          <span className="font-semibold text-lg mr-2">
-            {Math.round(weather.temperature)}°C
-          </span>
-        </>
-      ) : null}
-    </div>
+    <>
+      <style>
+        {`
+          @media (max-width: 400px) {
+            .cw-xs { align-items: center !important; padding: 0.25rem 0.5rem !important; }
+            .cw-xs .cw-city { display: none !important; }
+            .cw-xs .cw-icon { margin: 0 !important; width: 2rem !important; height: 2rem !important; }
+            .cw-xs .cw-temp { margin: 0 !important; font-size: 1rem !important; }
+          }
+        `}
+      </style>
+      <div
+        className="flex items-center min-w-[140px] min-h-[48px] px-6 m-3 bg-transparent text-gray-800 cw-xs"
+        style={{ boxSizing: 'border-box' }}
+      >
+        {loading ? (
+          <Loading loading={loading} />
+        ) : weather ? (
+          <>
+            <h1 className="mr-2 cw-city">{city}</h1>
+            <img
+              src={`/weathercode-icons/${weatherCodeToIcon(
+                weather.weathercode
+              )}.svg`}
+              alt={weatherCodeToDescription(weather.weathercode)}
+              className="w-10 h-10 mr-2 cw-icon"
+              loading="lazy"
+            />
+            <span className="font-semibold text-lg mr-2 cw-temp">
+              {Math.round(weather.temperature)}°C
+            </span>
+          </>
+        ) : null}
+      </div>
+    </>
   );
 }

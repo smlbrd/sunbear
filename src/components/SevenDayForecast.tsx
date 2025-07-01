@@ -60,6 +60,7 @@ export default function SevenDayForecast({
                 )}.svg`}
                 alt={weatherCodeToDescription(day.weatherCode)}
                 className="w-12 h-12 sm:w-12 sm:h-12 mb-1"
+                loading="lazy"
               />
               <span className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-600 mb-1">
                 {Math.round(day.temperatureMax)}°C

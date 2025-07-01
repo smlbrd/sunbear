@@ -1,9 +1,10 @@
 # SunBear Weather App
 
-![image](https://github.com/user-attachments/assets/fa70985f-c688-4dcd-bb14-f0f53651963a)
-
 A modern, responsive weather dashboard built with React, TypeScript, and Tailwind CSS.
+
 Get accurate, timezone-aware weather forecasts for any city, with a 7-day and hourly breakdown.
+
+![sunbear_demo](https://github.com/user-attachments/assets/32545ac2-6514-4528-b023-fcd887946804)
 
 ## Features
 

@@ -19,7 +19,7 @@ export default function SearchForm({
         placeholder="Search for a city"
         value={city}
         onChange={(e) => setCity(e.target.value)}
-        className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-transparent sm:w-4/5"
+        className="px-4 py-2 border bg-white border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-transparent sm:w-4/5"
       />
       <button
         className={`bg-blue-400 text-white py-2 px-4 rounded-lg transition-colors duration-200 font-medium sm:w-1/5 ${

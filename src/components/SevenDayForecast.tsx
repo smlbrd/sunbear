@@ -1,11 +1,15 @@
-import type { DailyWeatherData } from '../types/weather.types';
+import type {
+  DailyWeatherData,
+  SevenDayForecastProps,
+} from '../types/weather.types';
+import { weatherCodeToDescription } from '../utils/weathercodeToDescription';
 import { weatherCodeToIcon } from '../utils/weathercodeToIcon';
 
 export default function SevenDayForecast({
   daily,
-}: {
-  daily: DailyWeatherData[];
-}) {
+  selectedDay,
+  setSelectedDay,
+}: SevenDayForecastProps) {
   return (
     <section className="mt-4 w-full">
       <h2 className="text-lg font-semibold mb-2 text-gray-800 sr-only">
@@ -13,34 +17,60 @@ export default function SevenDayForecast({
       </h2>
       <div
         className="
-          flex gap-2
-          overflow-x-auto
+          flex overflow-x-auto
           lg:overflow-x-visible
-          lg:grid lg:grid-cols-7
+          lg:grid lg:grid-cols-8 lg:items-end lg:h-48
         "
       >
-        {daily.map((day) => (
+        {daily.map((day: DailyWeatherData, i: number) => (
           <button
             key={day.time}
-            className="flex flex-col items-center bg-white rounded-lg shadow p-3 w-full border border-gray-200"
+            className={`
+              flex flex-col justify-center items-center bg-white rounded-none shadow
+              border border-gray-200 w-full flex-1
+              transition-all duration-200
+              px-2
+              ${
+                selectedDay === i
+                  ? 'lg:col-span-2 lg:h-48 h-44 ring-2 ring-blue-500 border-blue-500 z-10'
+                  : 'lg:col-span-1 lg:h-44 h-40 hover:border-blue-300'
+              }
+              ${i === 0 ? 'rounded-l-lg' : ''}
+              ${i === daily.length - 1 ? 'rounded-r-lg' : ''}
+            `}
             type="button"
-            onClick={() => {
-              console.log('Clicked!');
-            }}
+            onClick={() => setSelectedDay(i)}
+            tabIndex={0}
+            aria-pressed={selectedDay === i}
+            aria-label={`Select forecast for ${new Date(
+              day.time
+            ).toLocaleDateString(undefined, {
+              weekday: 'long',
+              day: 'numeric',
+              month: 'short',
+            })}`}
           >
             <span className="text-xs text-gray-500 mb-1">
-              {new Date(day.time).toLocaleDateString(undefined, {
-                weekday: 'short',
-              })}
+              {(() => {
+                const date = new Date(day.time);
+                const weekday = date.toLocaleDateString(undefined, {
+                  weekday: 'short',
+                });
+                const dayNum = date.getDate();
+                const month = date.toLocaleDateString(undefined, {
+                  month: 'short',
+                });
+                return `${weekday} ${dayNum} ${month}`;
+              })()}
             </span>
             <img
               src={`/weathercode-icons/${weatherCodeToIcon(
                 day.weatherCode
               )}.svg`}
-              alt={`Weather icon for code ${day.weatherCode}`}
+              alt={weatherCodeToDescription(day.weatherCode)}
               className="w-12 h-12 mb-1"
             />
-            <span className="text-2xl font-bold text-blue-700 mb-1">
+            <span className="text-2xl font-bold text-gray-600 mb-1">
               {Math.round(day.temperatureMax)}°C
             </span>
             <span className="text-xs text-gray-500 mb-1">

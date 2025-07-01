@@ -18,6 +18,7 @@ function App() {
   const [submittedCity, setSubmittedCity] = useState('');
   const [hourlyWeather, setHourlyWeather] = useState<HourlyWeatherData[]>([]);
   const [dailyWeather, setDailyWeather] = useState<DailyWeatherData[]>([]);
+  const [selectedDay, setSelectedDay] = useState(0);
   const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -38,10 +39,16 @@ function App() {
       setSubmittedCity('');
       setHourlyWeather([]);
       setDailyWeather([]);
+      setSelectedDay(0);
     } finally {
       setLoading(false);
     }
   };
+
+  const hoursPerDay = 24;
+  const startIndex = selectedDay * hoursPerDay;
+  const endIndex = startIndex + hoursPerDay;
+  const hourlySlice = hourlyWeather.slice(startIndex, endIndex);
 
   return (
     <div className="pt-24 min-h-screen bg-gray-100">
@@ -60,10 +67,16 @@ function App() {
           )}
         </div>
         <div className="mt-8 w-full max-w-2xl">
-          {dailyWeather.length > 0 && <SevenDayForecast daily={dailyWeather} />}
+          {dailyWeather.length > 0 && (
+            <SevenDayForecast
+              daily={dailyWeather}
+              selectedDay={selectedDay}
+              setSelectedDay={setSelectedDay}
+            />
+          )}
         </div>
         <div className="mt-8 w-full max-w-2xl">
-          {hourlyWeather.length > 0 && <HourlyWeather hourly={hourlyWeather} />}
+          {hourlySlice.length > 0 && <HourlyWeather hourly={hourlySlice} />}
         </div>
       </div>
     </div>

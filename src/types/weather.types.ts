@@ -3,6 +3,12 @@ export type WeatherProps = {
   date?: string;
 };
 
+export type SevenDayForecastProps = {
+  daily: DailyWeatherData[];
+  selectedDay: number;
+  setSelectedDay: (day: number) => void;
+};
+
 export type CurrentWeatherData = {
   temperature: number;
   weathercode: number;

@@ -1,15 +1,28 @@
 import type { HourlyWeatherData } from '../types/weather.types';
+import { formatInTimeZone } from 'date-fns-tz';
 
 export default function HourlyWeatherTable({
   hourly,
+  timezone,
 }: {
   hourly: HourlyWeatherData[];
+  timezone: string;
 }) {
-  const hours = hourly.map((h) =>
-    new Date(h.time).toLocaleTimeString([], {
-      hour: '2-digit',
-      minute: '2-digit',
-    })
+  const now = new Date();
+  const nowLocal = formatInTimeZone(now, timezone, "yyyy-MM-dd'T'HH:00");
+
+  const startIndex = hourly.findIndex((h) => {
+    const nextLocal = formatInTimeZone(h.time, timezone, "yyyy-MM-dd'T'HH:00");
+    return nextLocal >= nowLocal;
+  });
+
+  const displayHours = hourly.slice(
+    startIndex >= 0 ? startIndex : 0,
+    (startIndex >= 0 ? startIndex : 0) + 12
+  );
+
+  const hours = displayHours.map((h) =>
+    formatInTimeZone(h.time, timezone, 'HHmm')
   );
   const temps = hourly.map((h) => `${Math.round(h.temperature)}°C`);
   const feels = hourly.map((h) => `${Math.round(h.apparentTemperature)}°C`);

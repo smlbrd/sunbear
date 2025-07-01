@@ -18,6 +18,7 @@ function App() {
   const [submittedCity, setSubmittedCity] = useState('');
   const [hourlyWeather, setHourlyWeather] = useState<HourlyWeatherData[]>([]);
   const [dailyWeather, setDailyWeather] = useState<DailyWeatherData[]>([]);
+  const [timezone, setTimezone] = useState<string>('');
   const [selectedDay, setSelectedDay] = useState(0);
   const [error, setError] = useState<string | null>(null);
 
@@ -28,18 +29,20 @@ function App() {
     setError(null);
     try {
       const coords = await getCoordsByCity(city);
-      const { hourly, daily } = await getWeatherByCoords(
+      const { hourly, daily, timezone } = await getWeatherByCoords(
         coords.lat,
         coords.lon
       );
       setHourlyWeather(hourly);
       setDailyWeather(daily);
+      setTimezone(timezone);
       setSelectedDay(0);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Could not fetch weather.');
       setSubmittedCity('');
       setHourlyWeather([]);
       setDailyWeather([]);
+      setTimezone('');
       setSelectedDay(0);
     } finally {
       setLoading(false);
@@ -67,6 +70,7 @@ function App() {
               daily={dailyWeather}
               selectedDay={selectedDay}
               setSelectedDay={setSelectedDay}
+              timezone={timezone}
             />
           )}
         </div>
@@ -75,6 +79,7 @@ function App() {
             <HourlyWeather
               hourlyWeather={hourlyWeather}
               selectedDay={selectedDay}
+              timezone={timezone}
             />
           )}
         </div>

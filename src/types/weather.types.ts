@@ -1,10 +1,10 @@
 export type WeatherProps = {
   city: string;
-  date?: string;
 };
 
 export type SevenDayForecastProps = {
   daily: DailyWeatherData[];
+  timezone: string;
   selectedDay: number;
   setSelectedDay: (day: number) => void;
 };
@@ -23,6 +23,7 @@ export type WeatherApiResponse = {
 
 export type HourlyWeatherProps = {
   hourlyWeather: HourlyWeatherData[];
+  timezone: string;
   selectedDay: number;
 };
 

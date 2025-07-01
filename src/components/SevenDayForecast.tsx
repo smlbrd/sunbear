@@ -4,11 +4,13 @@ import type {
 } from '../types/weather.types';
 import { weatherCodeToDescription } from '../utils/weathercodeToDescription';
 import { weatherCodeToIcon } from '../utils/weathercodeToIcon';
+import { formatInTimeZone } from 'date-fns-tz';
 
 export default function SevenDayForecast({
   daily,
   selectedDay,
   setSelectedDay,
+  timezone,
 }: SevenDayForecastProps) {
   return (
     <section className="mt-4 w-full">
@@ -40,26 +42,14 @@ export default function SevenDayForecast({
             onClick={() => setSelectedDay(i)}
             tabIndex={0}
             aria-pressed={selectedDay === i}
-            aria-label={`Select forecast for ${new Date(
-              day.time
-            ).toLocaleDateString(undefined, {
-              weekday: 'long',
-              day: 'numeric',
-              month: 'short',
-            })}`}
+            aria-label={`Select forecast for ${formatInTimeZone(
+              day.time,
+              timezone,
+              'EEEE d MMM'
+            )}`}
           >
             <span className="text-xs text-gray-500 mb-1">
-              {(() => {
-                const date = new Date(day.time);
-                const weekday = date.toLocaleDateString(undefined, {
-                  weekday: 'short',
-                });
-                const dayNum = date.getDate();
-                const month = date.toLocaleDateString(undefined, {
-                  month: 'short',
-                });
-                return `${weekday} ${dayNum} ${month}`;
-              })()}
+              {formatInTimeZone(day.time, timezone, 'EEE d MMM')}
             </span>
             <img
               src={`/weathercode-icons/${weatherCodeToIcon(

@@ -4,6 +4,7 @@ import HourlyWeatherTable from './HourlyWeatherTable';
 export default function HourlyWeather({
   hourlyWeather,
   selectedDay,
+  timezone,
 }: HourlyWeatherProps) {
   const hoursPerDay = 24;
   const startIndex = selectedDay * hoursPerDay;
@@ -18,7 +19,7 @@ export default function HourlyWeather({
       className="mt-4 overflow-x-auto"
     >
       <h2 className="sr-only">Hourly Forecast</h2>
-      <HourlyWeatherTable hourly={hourlySlice} />
+      <HourlyWeatherTable hourly={hourlySlice} timezone={timezone} />
     </section>
   );
 }

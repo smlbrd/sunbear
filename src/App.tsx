@@ -41,10 +41,6 @@ function App() {
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Could not fetch weather.');
       setSubmittedCity('');
-      setHourlyWeather([]);
-      setDailyWeather([]);
-      setTimezone('');
-      setSelectedDay(0);
     } finally {
       setLoading(false);
     }

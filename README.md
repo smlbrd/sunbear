@@ -20,8 +20,10 @@ Get accurate, timezone-aware weather forecasts for any city, with a 7-day and ho
 
 ### Prerequisites
 
+```bash
 Node.js (v22+ recommended)
 npm
+```
 
 ### Installation
 Clone the repo and install dependencies:
@@ -54,4 +56,5 @@ npm run preview
 ### Special thanks
 Weather data: [Open-Meteo](https://open-meteo.com/)
 Location API: [ip-api.io](https://ip-api.io/)
+Timezone utility: [date-fns-tz](https://www.npmjs.com/package/date-fns-tz)
 Icons: [Sihan Liu](https://www.iconfinder.com/Neolau1119)

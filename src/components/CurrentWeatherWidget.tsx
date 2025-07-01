@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
 import getCoordsByCity from '../api/getCoordsByCity';
 import getCurrentWeatherByCoords from '../api/getCurrentWeatherByCoords';
-import type { CurrentWeatherData, WeatherProps } from '../types/weather.types';
+import type {
+  CurrentWeatherData,
+  CurrentWeatherProps,
+} from '../types/weather.types';
 import { weatherCodeToDescription } from '../utils/weathercodeToDescription';
 import { weatherCodeToIcon } from '../utils/weathercodeToIcon';
 import Loading from './Loading';
 
-export default function CurrentWeatherWidget({ city }: WeatherProps) {
+export default function CurrentWeatherWidget({ city }: CurrentWeatherProps) {
   const [weather, setWeather] = useState<CurrentWeatherData | null>(null);
   const [loading, setLoading] = useState(false);
 

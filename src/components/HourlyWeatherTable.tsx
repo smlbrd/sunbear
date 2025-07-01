@@ -9,7 +9,7 @@ export default function HourlyWeatherTable({
   hourly: HourlyWeatherData[];
   timezone: string;
 }) {
-  const hours = hourly.map((h) => formatInTimeZone(h.time, timezone, 'HH:mm'));
+  const hours = hourly.map((h) => formatInTimeZone(h.time, timezone, 'HHmm'));
   const humidity = hourly.map((h) => `${h.humidity}%`);
   const precip = hourly.map((h) => `${h.precipitationProbability}%`);
   const uv = hourly.map((h) => h.uvIndex);

@@ -1,18 +1,18 @@
-export type WeatherProps = {
+export type CurrentWeatherProps = {
   city: string;
 };
 
 export type SevenDayForecastProps = {
-  daily: DailyWeatherData[];
+  dailyWeather: DailyWeatherData[];
   timezone: string;
   selectedDay: number;
   setSelectedDay: (day: number) => void;
 };
 
-export type CurrentWeatherData = {
-  temperature: number;
-  weathercode: number;
-  humidity?: number;
+export type HourlyWeatherProps = {
+  hourlyWeather: HourlyWeatherData[];
+  timezone: string;
+  selectedDay: number;
 };
 
 export type WeatherApiResponse = {
@@ -21,10 +21,16 @@ export type WeatherApiResponse = {
   timezone: string;
 };
 
-export type HourlyWeatherProps = {
-  hourlyWeather: HourlyWeatherData[];
-  timezone: string;
-  selectedDay: number;
+export type CurrentWeatherData = {
+  temperature: number;
+  weathercode: number;
+};
+
+export type DailyWeatherData = {
+  time: string;
+  temperatureMax: number;
+  apparentTemperatureMax: number;
+  weatherCode: number;
 };
 
 export type HourlyWeatherData = {
@@ -34,11 +40,4 @@ export type HourlyWeatherData = {
   humidity: number;
   precipitationProbability: number;
   uvIndex: number;
-};
-
-export type DailyWeatherData = {
-  time: string;
-  temperatureMax: number;
-  apparentTemperatureMax: number;
-  weatherCode: number;
 };

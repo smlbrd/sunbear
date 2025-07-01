@@ -83,7 +83,7 @@ function App() {
             <p className="text-red-600 font-medium">{error}</p>
           </div>
         )}
-        <div className="mt-8 w-full max-w-2xl">
+        <div className="mt-8 w-full max-w-5xl p-4">
           {dailyWeather.length > 0 && (
             <SevenDayForecast
               daily={dailyWeather}
@@ -93,7 +93,7 @@ function App() {
             />
           )}
         </div>
-        <div className="mt-8 w-full max-w-2xl">
+        <div className="mt-8 w-full max-w-4xl p-4">
           {hourlyWeather.length > 0 && (
             <HourlyWeather
               hourlyWeather={hourlyWeather}

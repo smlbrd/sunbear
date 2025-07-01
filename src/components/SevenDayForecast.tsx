@@ -15,17 +15,18 @@ export default function SevenDayForecast({
   return (
     <section className="mt-4">
       <h2 className="sr-only">7-Day Forecast</h2>
-      <div
-        className="
+      <div className="max-w-[1280px] mx-auto">
+        <div
+          className="
           flex overflow-x-auto overflow-visible p-2
           lg:overflow-x-visible
           lg:grid lg:grid-cols-8 lg:items-end lg:h-48
         "
-      >
-        {daily.map((day: DailyWeatherData, i: number) => (
-          <button
-            key={day.time}
-            className={`
+        >
+          {daily.map((day: DailyWeatherData, i: number) => (
+            <button
+              key={day.time}
+              className={`
               flex flex-col justify-center items-center bg-white
               border border-gray-200 
               transition-all duration-200
@@ -40,34 +41,35 @@ export default function SevenDayForecast({
               ${i === 0 ? 'rounded-l-lg' : ''}
               ${i === daily.length - 1 ? 'rounded-r-lg' : ''}
             `}
-            type="button"
-            onClick={() => setSelectedDay(i)}
-            tabIndex={0}
-            aria-pressed={selectedDay === i}
-            aria-label={`Select forecast for ${formatInTimeZone(
-              day.time,
-              timezone,
-              'EEEE d MMM'
-            )}`}
-          >
-            <span className="text-sm text-gray-500 mb-1">
-              {formatInTimeZone(day.time, timezone, 'EEE d MMM')}
-            </span>
-            <img
-              src={`/weathercode-icons/${weatherCodeToIcon(
-                day.weatherCode
-              )}.svg`}
-              alt={weatherCodeToDescription(day.weatherCode)}
-              className="w-12 h-12 sm:w-12 sm:h-12 mb-1"
-            />
-            <span className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-600 mb-1">
-              {Math.round(day.temperatureMax)}°C
-            </span>
-            <span className="text-sm md:text-md lg:text-lg text-gray-500 mb-1">
-              {Math.round(day.apparentTemperatureMax)}°C
-            </span>
-          </button>
-        ))}
+              type="button"
+              onClick={() => setSelectedDay(i)}
+              tabIndex={0}
+              aria-pressed={selectedDay === i}
+              aria-label={`Select forecast for ${formatInTimeZone(
+                day.time,
+                timezone,
+                'EEEE d MMM'
+              )}`}
+            >
+              <span className="text-sm text-gray-500 mb-1">
+                {formatInTimeZone(day.time, timezone, 'EEE d MMM')}
+              </span>
+              <img
+                src={`/weathercode-icons/${weatherCodeToIcon(
+                  day.weatherCode
+                )}.svg`}
+                alt={weatherCodeToDescription(day.weatherCode)}
+                className="w-12 h-12 sm:w-12 sm:h-12 mb-1"
+              />
+              <span className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-600 mb-1">
+                {Math.round(day.temperatureMax)}°C
+              </span>
+              <span className="text-sm md:text-md lg:text-lg text-gray-500 mb-1">
+                {Math.round(day.apparentTemperatureMax)}°C
+              </span>
+            </button>
+          ))}
+        </div>
       </div>
     </section>
   );

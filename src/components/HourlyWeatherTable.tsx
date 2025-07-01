@@ -1,5 +1,6 @@
 import type { HourlyWeatherData } from '../types/weather.types';
 import { formatInTimeZone } from 'date-fns-tz';
+import temperatureToColour from '../utils/temperatureToColour';
 
 export default function HourlyWeatherTable({
   hourly,
@@ -9,8 +10,6 @@ export default function HourlyWeatherTable({
   timezone: string;
 }) {
   const hours = hourly.map((h) => formatInTimeZone(h.time, timezone, 'HH:mm'));
-  const temps = hourly.map((h) => `${Math.round(h.temperature)}°C`);
-  const feels = hourly.map((h) => `${Math.round(h.apparentTemperature)}°C`);
   const humidity = hourly.map((h) => `${h.humidity}%`);
   const precip = hourly.map((h) => `${h.precipitationProbability}%`);
   const uv = hourly.map((h) => h.uvIndex);
@@ -38,9 +37,14 @@ export default function HourlyWeatherTable({
           <td className="p-2 text-md md:text-lg text-gray-700 bg-gray-50 sticky left-0">
             Temp
           </td>
-          {temps.map((t, i) => (
-            <td key={i} className="p-2">
-              {t}
+          {hourly.map((h, i) => (
+            <td
+              key={i}
+              className={`p-2 ${temperatureToColour(
+                Math.round(h.temperature)
+              )}`}
+            >
+              {Math.round(h.temperature)}°C
             </td>
           ))}
         </tr>
@@ -48,9 +52,14 @@ export default function HourlyWeatherTable({
           <td className="p-2 text-md md:text-lg text-gray-700 bg-gray-50 sticky left-0">
             Feels Like
           </td>
-          {feels.map((f, i) => (
-            <td key={i} className="p-2">
-              {f}
+          {hourly.map((h, i) => (
+            <td
+              key={i}
+              className={`p-2 ${temperatureToColour(
+                Math.round(h.apparentTemperature)
+              )}`}
+            >
+              {Math.round(h.apparentTemperature)}°C
             </td>
           ))}
         </tr>

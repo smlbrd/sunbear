@@ -6,7 +6,7 @@ import { weatherCodeToDescription } from '../utils/weathercodeToDescription';
 import { weatherCodeToIcon } from '../utils/weathercodeToIcon';
 import Loading from './Loading';
 
-export default function CurrentWeather({ city }: WeatherProps) {
+export default function CurrentWeatherWidget({ city }: WeatherProps) {
   const [weather, setWeather] = useState<CurrentWeatherData | null>(null);
   const [loading, setLoading] = useState(false);
 

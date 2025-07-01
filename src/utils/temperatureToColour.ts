@@ -11,12 +11,12 @@ const temperatureClasses: [number, string][] = [
   [0, 'bg-blue-200/40'],
 ];
 
-export default function temperatureToColour(temp: number) {
+export default function temperatureToColour(temp: number): string {
   if (temp > 40) return 'bg-red-600/70';
   if (temp < 0) return 'bg-blue-200/30';
 
   for (const [threshold, colourClass] of temperatureClasses) {
     if (temp >= threshold) return colourClass;
   }
-  return null;
+  return 'bg-gray-50';
 }

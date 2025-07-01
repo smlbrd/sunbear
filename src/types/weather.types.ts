@@ -20,6 +20,11 @@ export type WeatherApiResponse = {
   daily: DailyWeatherData[];
 };
 
+export type HourlyWeatherProps = {
+  hourlyWeather: HourlyWeatherData[];
+  selectedDay: number;
+};
+
 export type HourlyWeatherData = {
   time: string;
   temperature: number;

@@ -12,9 +12,7 @@ export default function SevenDayForecast({
 }: SevenDayForecastProps) {
   return (
     <section className="mt-4 w-full">
-      <h2 className="text-lg font-semibold mb-2 text-gray-800 sr-only">
-        7-Day Forecast
-      </h2>
+      <h2 className="sr-only">7-Day Forecast</h2>
       <div
         className="
           flex overflow-x-auto

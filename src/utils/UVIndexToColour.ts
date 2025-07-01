@@ -1,10 +1,10 @@
 const uvIndexClasses: [number, string][] = [
-  [11, 'bg-purple-800/60'],
-  [8, 'bg-red-700/50'],
+  [11, 'bg-purple-700/60'],
+  [8, 'bg-red-600/50'],
   [6, 'bg-orange-500/60'],
-  [3, 'bg-yellow-300/50'],
-  [1, 'bg-green-200/40'],
-  [0, 'bg-gray-50'],
+  [3, 'bg-yellow-300/60'],
+  [1, 'bg-green-300/60'],
+  [0, 'bg-gray-200'],
 ];
 
 export default function UVIndexToColour(uv: number): string {

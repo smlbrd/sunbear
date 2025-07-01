@@ -50,7 +50,7 @@ export default function SevenDayForecast({
               'EEEE d MMM'
             )}`}
           >
-            <span className="text-xs text-gray-500 mb-1">
+            <span className="text-sm text-gray-500 mb-1">
               {formatInTimeZone(day.time, timezone, 'EEE d MMM')}
             </span>
             <img
@@ -58,12 +58,12 @@ export default function SevenDayForecast({
                 day.weatherCode
               )}.svg`}
               alt={weatherCodeToDescription(day.weatherCode)}
-              className="w-10 h-10 sm:w-12 sm:h-12 mb-1"
+              className="w-12 h-12 sm:w-12 sm:h-12 mb-1"
             />
             <span className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-600 mb-1">
               {Math.round(day.temperatureMax)}°C
             </span>
-            <span className="text-xs text-gray-500 mb-1">
+            <span className="text-sm md:text-md lg:text-lg text-gray-500 mb-1">
               {Math.round(day.apparentTemperatureMax)}°C
             </span>
           </button>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import type { HourlyWeatherData } from '../types/weather.types';
 import { formatInTimeZone } from 'date-fns-tz';
 import temperatureToColour from '../utils/temperatureToColour';
@@ -13,6 +13,7 @@ export default function HourlyWeatherTable({
   timezone: string;
 }) {
   const [uvInfoOpen, setUvInfoOpen] = useState(false);
+  const uvInfoButtonRef = useRef<HTMLButtonElement>(null);
   const hours = hourly.map((h) => formatInTimeZone(h.time, timezone, 'HHmm'));
   const humidity = hourly.map((h) => `${h.humidity}%`);
   const precip = hourly.map((h) => `${h.precipitationProbability}%`);
@@ -20,7 +21,13 @@ export default function HourlyWeatherTable({
 
   return (
     <>
-      <UVInfoModal open={uvInfoOpen} onClose={() => setUvInfoOpen(false)} />
+      <UVInfoModal
+        open={uvInfoOpen}
+        onClose={() => {
+          setUvInfoOpen(false);
+          uvInfoButtonRef.current?.focus();
+        }}
+      />
       <table className="min-w-max w-full text-center border-collapse bg-white rounded-lg shadow overflow-x-auto">
         <thead>
           <tr>
@@ -94,6 +101,7 @@ export default function HourlyWeatherTable({
               UV Index
               <button
                 type="button"
+                ref={uvInfoButtonRef}
                 className="ml-1 w-5 h-5 flex items-center justify-center rounded-full bg-gray-500 text-white text-xs font-bold border border-gray-600 hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-700"
                 aria-label="More info about UV Index"
                 onClick={() => setUvInfoOpen(true)}

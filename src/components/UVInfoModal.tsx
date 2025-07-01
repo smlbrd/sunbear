@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import UVIndexToColour from '../utils/UVIndexToColour';
 
 const uvLevels = [
@@ -50,7 +51,16 @@ export default function UVInfoModal({
   open: boolean;
   onClose: () => void;
 }) {
+  const closeBtnRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (open) {
+      closeBtnRef.current?.focus();
+    }
+  }, [open]);
+
   if (!open) return null;
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
       <div
@@ -58,6 +68,7 @@ export default function UVInfoModal({
         style={{ minWidth: 320 }}
       >
         <button
+          ref={closeBtnRef}
           className="absolute top-2 right-4 text-gray-400 hover:text-gray-600"
           onClick={onClose}
           aria-label="Close UV Index info"

@@ -27,7 +27,7 @@ export default function SevenDayForecast({
             <button
               key={day.time}
               className={`
-              flex flex-col justify-center items-center bg-white
+              flex flex-col justify-center items-center
               border border-gray-200 
               transition-all duration-200
               w-full
@@ -35,8 +35,8 @@ export default function SevenDayForecast({
               lg:px-6
               ${
                 selectedDay === i
-                  ? 'lg:col-span-2 lg:h-48 ring-2 ring-blue-500 border-blue-500 z-10'
-                  : 'lg:col-span-1 lg:h-44 hover:border-blue-300'
+                  ? 'lg:col-span-2 lg:h-48 ring-2 bg-white ring-blue-500 border-blue-500 z-10'
+                  : 'lg:col-span-1 lg:h-44 bg-gray-50 hover:border-blue-300'
               }
               ${i === 0 ? 'rounded-l-lg' : ''}
               ${i === dailyWeather.length - 1 ? 'rounded-r-lg' : ''}

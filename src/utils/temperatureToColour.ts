@@ -5,9 +5,9 @@ const temperatureClasses: [number, string][] = [
   [25, 'bg-orange-400/50'],
   [20, 'bg-yellow-300/50'],
   [15, 'bg-green-200/40'],
-  [10, 'bg-blue-200/40'],
-  [5, 'bg-blue-300/50'],
-  [0, 'bg-blue-400/50'],
+  [10, 'bg-blue-300/40'],
+  [5, 'bg-blue-400/50'],
+  [0, 'bg-blue-500/50'],
 ];
 
 export default function temperatureToColour(temp: number): string {

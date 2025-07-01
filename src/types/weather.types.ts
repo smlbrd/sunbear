@@ -9,13 +9,9 @@ export type CurrentWeatherData = {
   humidity?: number;
 };
 
-export type HourlyWeatherApiResponse = {
-  time: string[];
-  temperature_2m: number[];
-  apparent_temperature: number[];
-  relative_humidity_2m: number[];
-  precipitation_probability: number[];
-  uv_index: number[];
+export type WeatherApiResponse = {
+  hourly: HourlyWeatherData[];
+  daily: DailyWeatherData[];
 };
 
 export type HourlyWeatherData = {
@@ -25,4 +21,11 @@ export type HourlyWeatherData = {
   humidity: number;
   precipitationProbability: number;
   uvIndex: number;
+};
+
+export type DailyWeatherData = {
+  time: string;
+  temperatureMax: number;
+  apparentTemperatureMax: number;
+  weatherCode: number;
 };

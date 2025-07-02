@@ -6,9 +6,9 @@ export default function SevenDayForecastSkeleton({
   const skeletonDays = Array.from({ length: days });
 
   return (
-    <section className="mt-4 bg-gray-50">
+    <section className="mt-4">
       <h2 className="sr-only">Loading 7-Day Forecast</h2>
-      <div className="max-w-[1280px] mx-auto">
+      <div className="max-w-max mx-auto">
         <div
           className="
             flex overflow-x-auto p-2

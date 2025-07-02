@@ -64,7 +64,7 @@ export default function UVInfoModal({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
       <div
-        className="bg-white rounded-lg shadow-lg p-6 w-[60vw] h-[80vh] max-w-2xl max-h-[90vh] relative flex flex-col"
+        className="bg-white rounded-lg shadow-lg p-6 w-[60vw] h-[60vh] max-w-2xl max-h-[80vh] relative flex flex-col"
         style={{ minWidth: 320 }}
       >
         <button

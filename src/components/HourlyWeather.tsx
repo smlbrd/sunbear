@@ -14,10 +14,12 @@ export default function HourlyWeather({
   return (
     <section
       aria-label="Hourly weather forecast"
-      className="mt-4 overflow-x-auto mb-6"
+      className="overflow-x-auto mb-6"
     >
       <h2 className="sr-only">Hourly Forecast</h2>
-      <HourlyWeatherTable hourly={hourlySlice} timezone={timezone} />
+      <div className="px-6">
+        <HourlyWeatherTable hourly={hourlySlice} timezone={timezone} />
+      </div>
     </section>
   );
 }

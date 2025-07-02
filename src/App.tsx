@@ -93,7 +93,7 @@ function App() {
             )
           )}
         </div>
-        <div className="mt-8 w-full max-w-4xl p-4">
+        <div className="w-full max-w-5xl">
           {loading ? (
             <HourlyWeatherTableSkeleton columns={8} />
           ) : (

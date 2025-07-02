@@ -28,7 +28,7 @@ export default function HourlyWeatherTable({
           uvInfoButtonRef.current?.focus();
         }}
       />
-      <table className="min-w-max w-full text-center border-collapse bg-white rounded-lg shadow overflow-x-auto">
+      <table className="min-w-max w-full text-center border-collapse bg-white rounded-lg overflow-x-auto">
         <thead>
           <tr>
             <th className="bg-gray-100 sticky left-0 z-10" scope="col">
@@ -47,7 +47,7 @@ export default function HourlyWeatherTable({
         </thead>
         <tbody>
           <tr>
-            <td className="p-2 text-md md:text-lg text-gray-700 bg-gray-50 sticky left-0">
+            <td className="p-2 text-md md:text-lg text-gray-700 bg-gray-100 sticky left-0">
               Temp
             </td>
             {hourly.map((h, i) => (

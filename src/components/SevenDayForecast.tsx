@@ -15,7 +15,7 @@ export default function SevenDayForecast({
   return (
     <section className="mt-4">
       <h2 className="sr-only">7-Day Forecast</h2>
-      <div className="max-w-[1280px] mx-auto">
+      <div className="max-w-max mx-auto">
         <div
           className="
           flex overflow-x-auto overflow-visible p-2

@@ -11,6 +11,7 @@ Get accurate, timezone-aware weather forecasts for any city, with a 7-day and ho
 - 🌍 Search weather by city or auto-detect your location
 - 📅 7-day forecast with interactive day selection
 - 🕒 Hourly weather table with color-coded temperatures
+- ☀️ UV Index ratings, and safety information
 - 🌤️ Weather icons based on WMO weather codes
 - 🕰️ Accurate timezone handling for any location
 - 📱 Mobile-first, responsive design

@@ -79,7 +79,7 @@ function App() {
             <p className="text-red-600 font-medium">{error}</p>
           </div>
         )}
-        <div className="mt-8 w-full max-w-5xl p-4">
+        <div className="w-full max-w-5xl p-4">
           {loading ? (
             <SevenDayForecastSkeleton />
           ) : (

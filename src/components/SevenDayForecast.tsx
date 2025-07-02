@@ -13,25 +13,25 @@ export default function SevenDayForecast({
   timezone,
 }: SevenDayForecastProps) {
   return (
-    <section className="mt-4">
+    <section>
       <h2 className="sr-only">7-Day Forecast</h2>
       <div className="max-w-max mx-auto">
         <div
           className="
-          flex overflow-x-auto overflow-visible p-2
+          flex items-end p-2
           lg:overflow-x-visible
-          lg:grid lg:grid-cols-8 lg:items-end lg:h-48
+          lg:grid lg:grid-cols-8 lg:min-w-28 lg:h-48
         "
         >
           {dailyWeather.map((day: DailyWeatherData, i: number) => (
             <button
               key={day.time}
               className={`
-              flex flex-col justify-center items-center
+              flex flex-col items-center
               border border-gray-200 
-              transition-all duration-200
-              w-full
-              h-40 px-4 py-3
+              transition-colors duration-150
+              min-w-24
+              h-44 p-4
               lg:px-6
               ${
                 selectedDay === i
@@ -43,7 +43,6 @@ export default function SevenDayForecast({
             `}
               type="button"
               onClick={() => setSelectedDay(i)}
-              tabIndex={0}
               aria-pressed={selectedDay === i}
               aria-label={`Select forecast for ${formatInTimeZone(
                 day.time,

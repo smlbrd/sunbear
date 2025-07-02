@@ -4,7 +4,8 @@ A modern, responsive weather dashboard built with React, TypeScript, and Tailwin
 
 Get accurate, timezone-aware weather forecasts for any city, with a 7-day and hourly breakdown.
 
-![sunbear_demo](https://github.com/user-attachments/assets/32545ac2-6514-4528-b023-fcd887946804)
+![sunbear_demo](https://github.com/user-attachments/assets/d3e27747-e52b-4e62-b446-d37d91211bbb)
+
 
 ## Features
 

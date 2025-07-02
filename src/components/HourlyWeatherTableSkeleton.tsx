@@ -9,7 +9,7 @@ export default function HourlyWeatherTableSkeleton({
     <>
       <h2 className="sr-only">Loading Hourly Forecast</h2>
       <table
-        className="min-w-max w-full text-center border-collapse bg-white rounded-lg shadow overflow-x-auto animate-pulse"
+        className="min-w-max w-full text-center border-collapse bg-gray-50 rounded-lg shadow overflow-x-auto animate-pulse"
         aria-busy="true"
       >
         <thead>
